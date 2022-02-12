@@ -1,18 +1,23 @@
-<<<<<<< HEAD
 def similar_license_plates(plate1, plate2):
     tr = str.maketrans('OQITZSB', '0011258', ' ')
-    print(plate1.translate(tr))
-    print(plate2.translate(tr))
     return plate1.translate(tr) == plate2.translate(tr)
 
-print(similar_license_plates('A A  A', 'AA A')) # True
-=======
-def similar_license_plates(plate1, plate2):
-    tr = str.maketrans('OQITZSB', '0011258', ' ')
-    print(plate1.translate(tr))
-    print(plate2.translate(tr))
-    return plate1.translate(tr) == plate2.translate(tr)
+def solution(plate1,plate2):
+    from_char = "OQITZSB"
+    to_char = "0011258"
+    p1 = plate1.replace(" ", "")
+    p2 = plate2.replace(" ", "")
+    
+    for i in from_char:
+        if i in plate1:
+            p1 = p1.replace(i, to_char[from_char.index(i)])
+        if i in plate2:
+            p2 = p2.replace(i, to_char[from_char.index(i)])
+    return p1 == p2
+
 
 print(similar_license_plates('A A  A', 'AA A')) # True
->>>>>>> f1cf4a07c260a26ff3083f30cf20e94bd318a501
 print(similar_license_plates('0XB', 'OBX'))
+
+print(solution('A A  A', 'AA A'))
+print(solution('0XB', 'OBX'))
